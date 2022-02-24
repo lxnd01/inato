@@ -24,7 +24,7 @@ export class Pharmacy {
         this.drugs[i].name === "Doliprane" || this.drugs[i].name === "Magic Pill"
       ) {
         if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
+          if (this.drugs[i].name === "Doliprane") {
             this.drugs[i].decreaseBenefit();
           }
         }
