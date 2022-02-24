@@ -1,8 +1,8 @@
-import {Drug, Pharmacy} from "./pharmacy";
+import {Doliprane, Drug, Pharmacy} from "./pharmacy";
 
 export function run() {
     const drugs = [
-        new Drug("Doliprane", 20, 30),
+        new Doliprane(),
         new Drug("Herbal Tea", 10, 5),
         new Drug("Fervex", 5, 40),
         new Drug("Magic Pill", 15, 40)

@@ -63,6 +63,12 @@ export class Drug {
   }
 }
 
+export class Doliprane extends Drug {
+  constructor() {
+    super("Doliprane", 20, 30)
+  }
+}
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
