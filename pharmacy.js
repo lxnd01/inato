@@ -8,6 +8,10 @@ export class Drug {
   decreaseBenefit() {
     this.benefit = this.benefit - 1;
   }
+
+  increaseBenefit() {
+    this.benefit = this.benefit + 1;
+  }
 }
 
 export class Pharmacy {
@@ -27,16 +31,16 @@ export class Pharmacy {
         }
       } else {
         if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
+          this.drugs[i].increaseBenefit();
           if (this.drugs[i].name == "Fervex") {
             if (this.drugs[i].expiresIn < 11) {
               if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
+                this.drugs[i].increaseBenefit();
               }
             }
             if (this.drugs[i].expiresIn < 6) {
               if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
+                this.drugs[i].increaseBenefit();
               }
             }
           }
@@ -59,7 +63,7 @@ export class Pharmacy {
           }
         } else {
           if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
+            this.drugs[i].increaseBenefit();
           }
         }
       }
