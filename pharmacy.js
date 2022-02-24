@@ -4,6 +4,10 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  decreaseBenefit() {
+    this.benefit = this.benefit - 1;
+  }
 }
 
 export class Pharmacy {
@@ -18,7 +22,7 @@ export class Pharmacy {
       ) {
         if (this.drugs[i].benefit > 0) {
           if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
+            this.drugs[i].decreaseBenefit();
           }
         }
       } else {
@@ -46,7 +50,7 @@ export class Pharmacy {
           if (this.drugs[i].name != "Fervex") {
             if (this.drugs[i].benefit > 0) {
               if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
+                this.drugs[i].decreaseBenefit();
               }
             }
           } else {
