@@ -1,9 +1,9 @@
-import {Doliprane, Drug, MagicPill, Pharmacy} from "./pharmacy";
+import {Doliprane, Drug, HerbalTea, MagicPill, Pharmacy} from "./pharmacy";
 
 export function run() {
     const drugs = [
         new Doliprane(),
-        new Drug("Herbal Tea", 10, 5),
+        new HerbalTea(),
         new Drug("Fervex", 5, 40),
         new MagicPill()
     ];
