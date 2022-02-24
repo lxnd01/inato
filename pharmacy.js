@@ -54,15 +54,14 @@ export class Pharmacy {
             this.drugs[i].increaseBenefit();
           }
         } else {
-          if (this.drugs[i].name != "Fervex") {
+          if (this.drugs[i].name === "Fervex") {
+            this.drugs[i].benefit = this.drugs[i].benefit - this.drugs[i].benefit;
+          } else {
             if (this.drugs[i].benefit > 0) {
               if (this.drugs[i].name != "Magic Pill") {
                 this.drugs[i].decreaseBenefit();
               }
             }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
           }
         }
       }
