@@ -6,7 +6,10 @@ export class Drug {
   }
 
   decreaseBenefit() {
-    this.benefit = this.benefit - 1;
+    let BENEFIT_MIN = 0;
+    if (this.benefit > BENEFIT_MIN) {
+      this.benefit = this.benefit - 1;
+    }
   }
 
   increaseBenefit() {
@@ -58,14 +61,10 @@ export class Doliprane extends Drug {
   }
 
   updateBenefitValue() {
-    if (this.benefit > 0) {
-        this.decreaseBenefit();
-    }
+    this.decreaseBenefit();
     this.expiresIn = this.expiresIn - 1;
     if (this.expired()) {
-        if (this.benefit > 0) {
-            this.decreaseBenefit();
-          }
+          this.decreaseBenefit();
       }
     }
 }
