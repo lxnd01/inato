@@ -20,24 +20,16 @@ export class Drug {
   }
 
   updateBenefitValue() {
-    if (
-        this.name === "Doliprane" || this.name === "Magic Pill"
-      ) {
-
-      } else {
-        this.increaseBenefit();
-        if (this.name === "Fervex") {
-          if (this.expiresIn < 11) {
-            this.increaseBenefit();
-          }
-          if (this.expiresIn < 6) {
-            this.increaseBenefit();
-          }
+      this.increaseBenefit();
+      if (this.name === "Fervex") {
+        if (this.expiresIn < 11) {
+          this.increaseBenefit();
+        }
+        if (this.expiresIn < 6) {
+          this.increaseBenefit();
         }
       }
-      if (this.name != "Magic Pill") {
-        this.expiresIn = this.expiresIn - 1;
-      }
+      this.expiresIn = this.expiresIn - 1;
       if (this.expired()) {
         if (this.name === "Herbal Tea") {
           this.increaseBenefit();
@@ -64,14 +56,18 @@ export class Doliprane extends Drug {
     this.decreaseBenefit();
     this.expiresIn = this.expiresIn - 1;
     if (this.expired()) {
-          this.decreaseBenefit();
-      }
+      this.decreaseBenefit();
     }
+  }
 }
 
 export class MagicPill extends Drug {
   constructor() {
     super("Magic Pill", 15, 40)
+  }
+
+  updateBenefitValue() {
+    // the magic pill is immuable
   }
 }
 
