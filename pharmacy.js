@@ -17,11 +17,7 @@ export class Drug {
     if (
         this.name === "Doliprane" || this.name === "Magic Pill"
       ) {
-        if (this.benefit > 0) {
-          if (this.name === "Doliprane") {
-            this.decreaseBenefit();
-          }
-        }
+
       } else {
         if (this.benefit < 50) {
           this.increaseBenefit();
@@ -50,12 +46,6 @@ export class Drug {
         } else {
           if (this.name === "Fervex") {
             this.benefit = this.benefit - this.benefit;
-          } else {
-            if (this.name === "Doliprane") {
-              if (this.benefit > 0) {
-                  this.decreaseBenefit();
-                }
-            }
           }
         }
       }
@@ -67,6 +57,18 @@ export class Doliprane extends Drug {
   constructor() {
     super("Doliprane", 20, 30)
   }
+
+  updateBenefitValue() {
+    if (this.benefit > 0) {
+        this.decreaseBenefit();
+    }
+    this.expiresIn = this.expiresIn - 1;
+    if (this.expiresIn < 0) {
+        if (this.benefit > 0) {
+            this.decreaseBenefit();
+          }
+      }
+    }
 }
 
 export class Pharmacy {
