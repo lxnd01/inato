@@ -10,7 +10,10 @@ export class Drug {
   }
 
   increaseBenefit() {
-    this.benefit = this.benefit + 1;
+    let BENEFIT_MAX = 50;
+    if (this.benefit < BENEFIT_MAX) {
+      this.benefit = this.benefit + 1;
+    }
   }
 
   updateBenefitValue() {
@@ -19,19 +22,13 @@ export class Drug {
       ) {
 
       } else {
-        if (this.benefit < 50) {
-          this.increaseBenefit();
-          if (this.name === "Fervex") {
-            if (this.expiresIn < 11) {
-              if (this.benefit < 50) {
-                this.increaseBenefit();
-              }
-            }
-            if (this.expiresIn < 6) {
-              if (this.benefit < 50) {
-                this.increaseBenefit();
-              }
-            }
+        this.increaseBenefit();
+        if (this.name === "Fervex") {
+          if (this.expiresIn < 11) {
+            this.increaseBenefit();
+          }
+          if (this.expiresIn < 6) {
+            this.increaseBenefit();
           }
         }
       }
@@ -40,9 +37,7 @@ export class Drug {
       }
       if (this.expired()) {
         if (this.name === "Herbal Tea") {
-          if (this.benefit < 50) {
-            this.increaseBenefit();
-          }
+          this.increaseBenefit();
         } else {
           if (this.name === "Fervex") {
             this.benefit = this.benefit - this.benefit;
