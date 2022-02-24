@@ -77,6 +77,12 @@ export class HerbalTea extends Drug {
   }
 }
 
+export class Fervex extends Drug {
+  constructor() {
+    super("Fervex", 5, 40)
+  }
+}
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
