@@ -38,7 +38,7 @@ export class Drug {
       if (this.name != "Magic Pill") {
         this.expiresIn = this.expiresIn - 1;
       }
-      if (this.expiresIn < 0) {
+      if (this.expired()) {
         if (this.name === "Herbal Tea") {
           if (this.benefit < 50) {
             this.increaseBenefit();
@@ -50,6 +50,10 @@ export class Drug {
         }
       }
 
+  }
+
+  expired() {
+    return this.expiresIn < 0;
   }
 }
 
@@ -63,7 +67,7 @@ export class Doliprane extends Drug {
         this.decreaseBenefit();
     }
     this.expiresIn = this.expiresIn - 1;
-    if (this.expiresIn < 0) {
+    if (this.expired()) {
         if (this.benefit > 0) {
             this.decreaseBenefit();
           }
