@@ -19,6 +19,10 @@ export class Drug {
     }
   }
 
+  decreaseExpirationTime() {
+    this.expiresIn = this.expiresIn - 1;
+  }
+
   expired() {
     return this.expiresIn < 0;
   }
@@ -31,7 +35,7 @@ export class Doliprane extends Drug {
 
   updateBenefitValue() {
     this.decreaseBenefit();
-    this.expiresIn = this.expiresIn - 1;
+    this.decreaseExpirationTime();
     if (this.expired()) {
       this.decreaseBenefit();
     }
@@ -55,7 +59,7 @@ export class HerbalTea extends Drug {
 
   updateBenefitValue() {
       this.increaseBenefit();
-      this.expiresIn = this.expiresIn - 1;
+      this.decreaseExpirationTime();
       if (this.expired()) {
         this.increaseBenefit();
       }
@@ -75,9 +79,9 @@ export class Fervex extends Drug {
     if (this.expiresIn < 6) {
       this.increaseBenefit();
     }
-    this.expiresIn = this.expiresIn - 1;
+    this.decreaseExpirationTime();
     if (this.expired()) {
-      this.benefit = this.benefit - this.benefit;
+      this.benefit = 0;
     }
   }
 }
