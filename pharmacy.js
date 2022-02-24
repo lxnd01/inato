@@ -4,6 +4,91 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  updateBenefitValue() {
+    // this method may be declared absract with Typescript
+    throw new Error('This method is abstract');
+  }
+
+  decreaseBenefit() {
+    let BENEFIT_MIN = 0;
+    if (this.benefit > BENEFIT_MIN) {
+      this.benefit = this.benefit - 1;
+    }
+  }
+
+  increaseBenefit() {
+    let BENEFIT_MAX = 50;
+    if (this.benefit < BENEFIT_MAX) {
+      this.benefit = this.benefit + 1;
+    }
+  }
+
+  decreaseExpirationTime() {
+    this.expiresIn = this.expiresIn - 1;
+  }
+
+  expired() {
+    return this.expiresIn < 0;
+  }
+}
+
+export class Doliprane extends Drug {
+  constructor() {
+    super("Doliprane", 20, 30)
+  }
+
+  updateBenefitValue() {
+    this.decreaseBenefit();
+    this.decreaseExpirationTime();
+    if (this.expired()) {
+      this.decreaseBenefit();
+    }
+  }
+}
+
+export class MagicPill extends Drug {
+  constructor() {
+    super("Magic Pill", 15, 40)
+  }
+
+  updateBenefitValue() {
+    // the magic pill is eternal
+  }
+}
+
+export class HerbalTea extends Drug {
+  constructor() {
+    super("Herbal Tea", 10, 5)
+  }
+
+  updateBenefitValue() {
+      this.increaseBenefit();
+      this.decreaseExpirationTime();
+      if (this.expired()) {
+        this.increaseBenefit();
+      }
+  }
+}
+
+export class Fervex extends Drug {
+  constructor() {
+    super("Fervex", 5, 40)
+  }
+
+  updateBenefitValue() {
+    this.increaseBenefit();
+    if (this.expiresIn < 11) {
+      this.increaseBenefit();
+    }
+    if (this.expiresIn < 6) {
+      this.increaseBenefit();
+    }
+    this.decreaseExpirationTime();
+    if (this.expired()) {
+      this.benefit = 0;
+    }
+  }
 }
 
 export class Pharmacy {
@@ -12,55 +97,20 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
+      this.drugs[i].updateBenefitValue()
     }
 
     return this.drugs;
+  }
+}
+
+export class Dafalgan extends Drug {
+  constructor(expiresIn, benefit) {
+    super("Dafalgan", expiresIn, benefit)
+  }
+
+  updateBenefitValue() {
+    this.decreaseBenefit();
+    this.decreaseBenefit();
   }
 }
