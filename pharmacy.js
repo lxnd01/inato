@@ -103,3 +103,14 @@ export class Pharmacy {
     return this.drugs;
   }
 }
+
+export class Dafalgan extends Drug {
+  constructor(expiresIn, benefit) {
+    super("Dafalgan", expiresIn, benefit)
+  }
+
+  updateBenefitValue() {
+    this.decreaseBenefit();
+    this.decreaseBenefit();
+  }
+}
