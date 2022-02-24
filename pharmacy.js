@@ -31,7 +31,7 @@ export class Pharmacy {
       } else {
         if (this.drugs[i].benefit < 50) {
           this.drugs[i].increaseBenefit();
-          if (this.drugs[i].name == "Fervex") {
+          if (this.drugs[i].name === "Fervex") {
             if (this.drugs[i].expiresIn < 11) {
               if (this.drugs[i].benefit < 50) {
                 this.drugs[i].increaseBenefit();
