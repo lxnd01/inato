@@ -5,6 +5,11 @@ export class Drug {
     this.benefit = benefit;
   }
 
+  updateBenefitValue() {
+    // this method may be declared absract with Typescript
+    throw new Error('This method is abstract');
+  }
+
   decreaseBenefit() {
     let BENEFIT_MIN = 0;
     if (this.benefit > BENEFIT_MIN) {
